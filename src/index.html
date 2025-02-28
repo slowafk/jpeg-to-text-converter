@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JPEG to Text Converter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>JPEG to Text Converter</h1>
+        
+        <div class="input-section">
+            <label>Select images:</label>
+            <div class="button-group">
+                <button id="selectFiles">Select Files</button>
+                <button id="selectFolder">Select Folder</button>
+            </div>
+            <div id="fileList" class="file-list"></div>
+        </div>
+
+        <div class="output-section">
+            <label>Output Location:</label>
+            <div class="button-group">
+                <button id="selectOutputFolder">Select Output Folder</button>
+            </div>
+            <div id="outputPath" class="output-path">No folder selected</div>
+        </div>
+
+        <div class="action-section">
+            <button id="processFiles" disabled>Process Files</button>
+        </div>
+
+        <div id="message" class="message hidden"></div>
+
+        <div id="progress" class="progress-section hidden">
+            <div class="progress-text">
+                <span>Processing:</span>
+                <span id="progressPercent">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div id="progressFill" class="progress-fill"></div>
+            </div>
+        </div>
+
+        <div id="results" class="results-section hidden">
+            <h2>Processed Files:</h2>
+            <div class="results-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>File Name</th>
+                            <th>Tags</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="renderer.js"></script>
+</body>
+</html>
