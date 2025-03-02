@@ -86,10 +86,10 @@ async function processFiles() {
         const filePath = selectedFiles[i];
         try {
             const metadata = await ipcRenderer.invoke('get-file-metadata', filePath);
-            console.log('Metadata received:', metadata); // Debug log
+            console.log('Metadata received:', metadata);
             
             const tags = metadata ? metadata.split(';').map(tag => tag.trim()).filter(tag => tag) : [];
-            console.log('Parsed tags:', tags); // Debug log
+            console.log('Parsed tags:', tags);
             
             // Add to results table
             const row = resultsBody.insertRow();
@@ -100,18 +100,18 @@ async function processFiles() {
                 try {
                     const fileName = path.basename(filePath, path.extname(filePath)) + '.txt';
                     const outputPath = path.join(outputFolder, fileName);
-                    fs.writeFileSync(outputPath, tags.join('\n'));
+                    fs.writeFileSync(outputPath, tags.join(', '));
                     row.insertCell(2).innerHTML = `<span class="status success">Success</span>`;
                 } catch (error) {
-                    console.error('Error saving file:', error); // Debug log
+                    console.error('Error saving file:', error);
                     row.insertCell(2).innerHTML = `<span class="status error">Failed to save file</span>`;
                 }
             } else {
-                console.log('No tags found for file:', filePath); // Debug log
+                console.log('No tags found for file:', filePath);
                 row.insertCell(2).innerHTML = `<span class="status warning">No tags found</span>`;
             }
         } catch (error) {
-            console.error('Error processing file:', error); // Debug log
+            console.error('Error processing file:', error);
             const row = resultsBody.insertRow();
             row.insertCell(0).textContent = filePath;
             row.insertCell(1).textContent = 'N/A';
